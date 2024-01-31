@@ -6,4 +6,6 @@
 Topics: Multi-directional Shooting, Random Generation, Physics
 
 Version: Unity 2023.2.6f1 (LTS)
+
+[Download](https://github.com/Sourodeep-S/Asteriods-SS/releases/tag/v1.0.0(Final))
  
