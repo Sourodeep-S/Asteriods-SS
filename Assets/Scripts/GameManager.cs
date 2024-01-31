@@ -63,9 +63,10 @@ public class GameManager : MonoBehaviour
 
   private void GameOver()
   {
-    enabled = false;
     this.gameOverText.gameObject.SetActive(true);
     this.retryButton.gameObject.SetActive(true);
+    this.livesText.text = lives.ToString();
+    enabled = false;
   }
 
   public void NewGame()
