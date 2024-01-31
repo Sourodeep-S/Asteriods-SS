@@ -59,6 +59,8 @@ public class Player : MonoBehaviour
       rigidBody.angularVelocity = 0f;
 
       this.gameObject.SetActive(false);
+
+      FindAnyObjectByType<GameManager>().PlayerDied();
     }
   }
 }
