@@ -1,10 +1,16 @@
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
   public Player player;
   public float invulnerabilityTime = 3f;
   public ParticleSystem explosion;
+  public TextMeshProUGUI scoreText;
+  public TextMeshProUGUI livesText;
+  public TextMeshProUGUI gameOverText;
+  public Button retryButton;
 
   private int lives = 3;
   private float respawnTime = 3f;
@@ -21,6 +27,12 @@ public class GameManager : MonoBehaviour
       this.score += 50;
     else
       this.score += 100;
+  }
+
+  private void Update()
+  {
+    this.scoreText.text = score.ToString("D5");
+    this.livesText.text = lives.ToString();
   }
 
   public void PlayerDied()
@@ -51,6 +63,25 @@ public class GameManager : MonoBehaviour
 
   private void GameOver()
   {
-    
+    enabled = false;
+    this.gameOverText.gameObject.SetActive(true);
+    this.retryButton.gameObject.SetActive(true);
+  }
+
+  public void NewGame()
+  {
+    Asteroid[] asteroids = FindObjectsByType<Asteroid>(FindObjectsSortMode.None);
+
+    foreach (var obs in asteroids)
+    {
+      Destroy(obs.gameObject);
+    }
+
+    this.gameOverText.gameObject.SetActive(false);
+    this.retryButton.gameObject.SetActive(false);
+    this.lives = 3;
+    this.score = 0;
+    enabled = true;
+    Invoke(nameof(Respawn), 0f);
   }
 }
